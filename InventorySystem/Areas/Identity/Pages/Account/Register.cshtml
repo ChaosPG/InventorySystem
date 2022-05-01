@@ -1,0 +1,192 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "ลงทะเบียนผู้ใช้ใหม่";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory - System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/css/InventoryStyle.css" rel="stylesheet" />
+
+    <style>
+        body {
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container py-5 mb-3">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-5">
+                <div class="card rounded-2 text-black">
+                    <div class="row g-0">
+                        <div class="card-body p-md-4 mx-md-4" style="color: #4584dc;">
+                            <div class="col-md-12 p-4 text-center">
+                                <img src="~/lib/bootstrap/dist/images/Inventory-Logo-big.png" class="mb-4" />
+                                <h5>INVENTORY SYSTEM</h5>
+                            </div>
+                            <form id="account" method="post" class="needs-validation" novalidate>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <span class="fa fa-user" style="color: #fad12b;"></span>
+                                            </span>
+                                        </div>
+                                        <input asp-for="Input.FirstName" type="text" id="form1Example13" class="form-control form-control-md" placeholder="ชื่อ" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-user" style="color: #fad12b;"></i>
+                                            </span>
+                                        </div>
+                                        <input asp-for="Input.LastName" type="text" id="form1Example23" class="form-control form-control-md" placeholder="นามสกุล" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-envelope" style="color: #fad12b;"></i>
+                                            </span>
+                                        </div>
+                                        <input asp-for="Input.Email" type="email" id="form1Example23" class="form-control form-control-md" placeholder="อีเมล์" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-lock" style="color: #fad12b;"></i>
+                                            </span>
+                                        </div>
+                                        <input asp-for="Input.Password" type="password" id="form1Example23" class="form-control form-control-md" placeholder="รหัสผ่าน" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-lock" style="color: #fad12b;"></i>
+                                            </span>
+                                        </div>
+                                        <input asp-for="Input.ConfirmPassword" type="password" id="form1Example23" class="form-control form-control-md" placeholder="ยืนยันรหัสผ่าน" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="text-center pt-1 mb-3 pb-1">
+                                    <span><button type="submit" class="btn btn-warning btn-block mb-3">ลงทะเบียน</button></span>
+                                    <span><a class="text-muted mr-2">มีบัญชีผู้ใช้แล้วใช่มั๊ย?<a href="~/Identity/Account/Login">เข้าสู่ระบบ</a></a></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@*<br />
+<div class="col-md-12 text-center"><h3>@ViewData["Title"]</h3></div>
+<br />
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group">
+                <label asp-for="Input.FirstName"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-10 offset-md-1">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-10 offset-md-1">
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-10">
+        <div class="form-group">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">ลงทะเบียน</button>
+        </div>
+    </div>
+        <br />
+        <br />
+</form>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

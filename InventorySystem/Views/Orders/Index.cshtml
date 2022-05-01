@@ -1,0 +1,86 @@
+﻿@model PaginatedList<InventorySystem.Models.Orders>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NormalLayout.cshtml";
+}
+
+<p>
+    <i class="fas fa-plus text-primary"><a asp-action="Create"> เพิ่มข้อมูล</a></i>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="ค้นหา" class="btn btn-default" />
+            @*<a asp-action="Index">กลับสู่เนื้อหาปกติ</a>*@
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">วันที่สั่งซื้อ</a>
+            </th>
+            <th>
+                รายละเอียดการสั่งซื้อ
+            </th>
+            <th>
+                ชื่อลูกค้า
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_of_Order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order_Details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Customer_FirstName)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Edit", "Orders", new { id = item.Order_ID })'">
+                        แก้ไข
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", "Orders", new { id = item.Order_ID })'">
+                        รายละเอียด
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Orders", new { id = item.Order_ID })'">
+                        ลบข้อมูล
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    ก่อนหน้า
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    ถัดไป
+</a>
+<br />
+<br />
+<form method="post" asp-controller="Orders" asp-action="Export">
+    <input type="submit" value="บันทึกเป็น Excel" class="btn btn-success" />
+</form>

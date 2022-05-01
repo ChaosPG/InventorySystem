@@ -1,0 +1,35 @@
+﻿@model InventorySystem.Models.Orders
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_TextboxLayout.cshtml";
+}
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date_of_Order)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date_of_Order)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Order_Details)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order_Details)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Customer_FirstName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Order_ID" class="btn btn-info">Edit</a>
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Orders")'">
+        กลับสู่หน้าหลัก
+    </button>
+</div>

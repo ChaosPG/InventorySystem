@@ -1,0 +1,121 @@
+﻿@model PaginatedList<InventorySystem.Models.Order_Detail>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NormalLayout.cshtml";
+}
+
+<p>
+    <i class="fas fa-plus text-primary"><a asp-action="Create"> เพิ่มข้อมูล</a></i>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="ค้นหา" class="btn btn-default" />
+            @*<a asp-action="Index">กลับสู่เนื้อหาปกติ</a>*@
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ราคาต่อหน่วย
+            </th>
+            <th>
+                ขนาด
+            </th>
+            <th>
+                จำนวน
+            </th>
+            <th>
+                ส่วนลด
+            </th>
+            <th>
+                ราคารวม
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">วันที่สั่งซื้อ</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">สินค้า</a>
+            </th>
+            <th>
+                รายละเอียดสินค้า            
+            </th>
+            <th>
+                ประเภทการจ่ายเงิน
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order_Detail_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Product_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Orders.Order_Details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment.Payment_Type)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Edit", "Order_Detail", new { id = item.Order_Detail_ID })'">
+                        แก้ไข
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", "Order_Detail", new { id = item.Order_Detail_ID })'">
+                        รายละเอียด
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Order_Detail", new { id = item.Order_Detail_ID })'">
+                        ลบข้อมูล
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    ก่อนหน้า
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    ถัดไป
+</a>
+<br />
+<br />
+<form method="post" asp-controller="Order_Detail" asp-action="Export">
+    <input type="submit" value="บันทึกเป็น Excel" class="btn btn-success" />
+</form>

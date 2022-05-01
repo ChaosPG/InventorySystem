@@ -1,0 +1,98 @@
+﻿@model PaginatedList<InventorySystem.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NormalLayout.cshtml";
+}
+
+<p>
+    <i class="fas fa-plus text-primary"><a asp-action="Create"> เพิ่มข้อมูล</a></i>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="ค้นหา" class="btn btn-default" />
+            @*<a asp-action="Index">กลับสู่เนื้อหาปกติ</a>*@
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ชื่อลูกค้า</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">นามสกุลลูกค้า</a>
+            </th>
+            <th>
+                ที่อยู่ลูกค้า
+            </th>
+            <th>
+                เบอร์โทรลูกค้า
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">อีเมล์ลูกค้า</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer_FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer_LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer_Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer_Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer_Email)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Edit", "Customers", new { id = item.Customer_ID })'">
+                        แก้ไข
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Details", "Customers", new { id = item.Customer_ID })'">
+                        รายละเอียด
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Customers", new { id = item.Customer_ID })'">
+                        ลบข้อมูล
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    ก่อนหน้า
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    ถัดไป
+</a>
+<br />
+<br />
+<form method="post" asp-controller="Customers" asp-action="Export">
+    <input type="submit" value="บันทึกเป็น Excel" class="btn btn-success" />
+</form>

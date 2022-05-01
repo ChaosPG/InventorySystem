@@ -1,0 +1,188 @@
+﻿body {
+    font-size: 14px;
+    font-weight: 300;
+    font-family: Mitr;
+    color: #000000;
+    background-color: #4584dc;
+    border-color: #92d3f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #4584dc;
+}
+
+.navbar-web-name {
+    color: #4584dc;
+    margin-top: 9px;
+    display:inline-block;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: #224576;
+    text-align: center;
+}
+
+.nav-link {
+    color: #92d3f4;
+    font-size: 16px;
+    line-height: 1.80857;
+    font-weight: 500;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.top-pos {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    position: absolute;
+    top: 100px;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu a::after {
+        transform: rotate(-90deg);
+        position: absolute;
+        right: 6px;
+        top: .8em;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-left: .1rem;
+        margin-right: .1rem;
+    }
+
+/*Custom Btn*/
+.btn.btn-warning {
+    background-color: #fad12b;
+    color: black;
+}
+
+.btn.btn-outline-warning:hover {
+    background-color: #fad12b;
+    color: #000000;
+}
+
+/*Custom HR*/
+
+hr {
+    border-top: 1px solid #92d3f4;
+}
+
+/*Checkbox and Text Same Line*/
+.align-checkbox {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -3px;
+    background-color: black;
+}
+
+/*Custom Placeholder*/
+.form-control::-webkit-input-placeholder {
+    color: #4584dc;
+    font-weight:300;
+}
+
+.form-control:-moz-placeholder {
+    color: #4584dc;
+    font-weight: 300;
+}
+
+.form-control::-moz-placeholder {
+    color: #4584dc;
+    font-weight: 300;
+}
+
+.form-control::placeholder {
+    color: #4584dc;
+    font-weight: 300;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #4584dc;
+    font-weight: 300;
+}
+
+/*Navbar Custom */
+
+.navbar-light .navbar-nav .nav-link {
+    color: #224576;
+}
+
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #4584dc;
+    }
+
+.navbar-brand {
+    vertical-align: middle;
+    padding: 5px;
+}
+
+/*center navbar when responsive*/
+
+@media screen and (max-width: 820px) {
+    .navbar .navbar-nav.responsive {
+        position: relative;
+        top: 73px;
+
+    }
+
+        .navbar .navbar-nav.responsive .icon {
+            position: fixed;
+            right: 0;
+            top: 0;
+        }
+
+        .navbar .navbar-nav.responsive a {
+            float: none;
+            display: inline;
+            text-align: center;
+        }
+}
+
+/*New Space of Menu Navbar*/
+
+.navbar-nav > li {
+    padding-left: 18px;
+    padding-right: 18px;
+    display:inline;
+}
+
+/*Custom Textbox Label*/
+.txt-label {
+    font-size: 16px;
+    color: white;
+    font-weight: 400;
+}
+
+

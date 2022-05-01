@@ -1,0 +1,31 @@
+﻿@model InventorySystem.Models.Payment
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_TextboxLayout.cshtml";
+}
+
+<form asp-action="Create" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-4">
+        <label asp-for="Payment_Type" class="control-label"></label>
+        <input asp-for="Payment_Type" class="form-control" />
+        <span asp-validation-for="Payment_Type" class="text-danger"></span>
+    </div>
+    <div class="col-md-8">
+        <label asp-for="Other_Details" class="control-label"></label>
+        <input asp-for="Other_Details" class="form-control" />
+        <span asp-validation-for="Other_Details" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <br />
+        <input type="submit" value="เพิ่มข้อมูล" class="btn btn-primary" />
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Payments")'">
+            กลับสู่หน้าหลัก
+        </button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

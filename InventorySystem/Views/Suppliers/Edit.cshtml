@@ -1,0 +1,46 @@
+﻿@model InventorySystem.Models.Supplier
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_TextboxLayout.cshtml";
+}
+<form asp-action="Edit" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Supplier_ID" />
+    <div class="col-md-6">
+        <label asp-for="Supplier_Name" class="control-label"></label>
+        <input asp-for="Supplier_Name" class="form-control" />
+        <span asp-validation-for="Supplier_Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Supplier_Address" class="control-label"></label>
+        <input asp-for="Supplier_Address" class="form-control" />
+        <span asp-validation-for="Supplier_Address" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Supplier_Phone" class="control-label"></label>
+        <input asp-for="Supplier_Phone" class="form-control" />
+        <span asp-validation-for="Supplier_Phone" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Supplier_Fax" class="control-label"></label>
+        <input asp-for="Supplier_Fax" class="form-control" />
+        <span asp-validation-for="Supplier_Fax" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Supplier_Email" class="control-label"></label>
+        <input asp-for="Supplier_Email" class="form-control" />
+        <span asp-validation-for="Supplier_Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <br />
+        <input type="submit" value="บันทึก" class="btn btn-primary" />
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Suppliers")'">
+            กลับสู่หน้าหลัก
+        </button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

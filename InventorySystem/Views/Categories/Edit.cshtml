@@ -1,0 +1,34 @@
+﻿@model InventorySystem.Models.Category
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_TextboxLayout.cshtml";
+}
+
+<form asp-action="Edit" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Category_ID" />
+    <div class="col-md-6">
+        <label asp-for="Category_Name" class="control-label"></label>
+        <input asp-for="Category_Name" class="form-control" />
+        <span asp-validation-for="Category_Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Category_Description" class="control-label"></label>
+        <input asp-for="Category_Description" class="form-control" />
+        <span asp-validation-for="Category_Description" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <br />
+        <div class="form-group">
+            <input type="submit" value="บันทึก" class="btn btn-primary" />
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Categories")'">
+                กลับสู่หน้าหลัก
+            </button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

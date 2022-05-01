@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using InventorySystem.Areas.Identity.Data
+
+@inject SignInManager<InventorySystemUser> SignInManager
+@inject UserManager<InventorySystemUser> UserManager
+
+<html>
+<head>
+    <link href="~/lib/bootstrap/dist/css/InventoryStyle.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/7b837f95cc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        
+        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+            @*<li>@Html.ActionLink("ประเภทสินค้า", "Index", "Categories")</li>*@
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="products">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    สินค้า
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="categories">
+                    <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    ประเภทสินค้า
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="customers"><i class="fa fa-users pr-2" aria-hidden="true"></i>ลูกค้า</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="orders">
+                    <i class="fa fa-first-order" aria-hidden="true"></i>
+                    คำสั่งซื้อ
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="order_detail"><i class="fas fa-list pr-2"></i>รายละเอียดคำสั่งซื้อ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="payments">
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                    การชำระเงิน
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="index" asp-controller="suppliers">
+                    <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                    คู่ค้า
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+                <li class="nav-item">
+                    <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">สวัสดี @UserManager.GetUserName(User)!</a>
+                </li>
+                <li class="nav-item">
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout">
+                        <button id="logout" type="submit" class="nav-link btn btn-link">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            ออกจากระบบ
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    }
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,52 @@
+﻿@model InventorySystem.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_TextboxLayout.cshtml";
+}
+
+<form asp-action="Create" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6">
+        <label asp-for="Customer_FirstName" class="control-label"></label>&nbsp;&nbsp;
+        <div class="input-group">
+            <input asp-for="Customer_FirstName" class="form-control" />
+            <span asp-validation-for="Customer_FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Customer_LastName" class="control-label"></label>&nbsp;&nbsp;
+        <div class="input-group">
+            <input asp-for="Customer_LastName" class="form-control" />
+            <span asp-validation-for="Customer_LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <label asp-for="Customer_Address" class="control-label"></label>&nbsp;&nbsp;
+        <input asp-for="Customer_Address" class="form-control" />
+        <span asp-validation-for="Customer_Address" class="text-danger"></span>
+    </div>
+    <div class="col-6">
+        <label asp-for="Customer_Phone" class="control-label"></label>&nbsp;&nbsp;
+        <input asp-for="Customer_Phone" class="form-control" />
+        <span asp-validation-for="Customer_Phone" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Customer_Email" class="control-label"></label>&nbsp;&nbsp;
+        <input asp-for="Customer_Email" class="form-control" />
+        <span asp-validation-for="Customer_Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <br />
+        <input type="submit" value="เพิ่มข้อมูล" class="btn btn-primary" />
+        <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Index", "Customers")'">
+            กลับสู่หน้าหลัก
+        </button>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
